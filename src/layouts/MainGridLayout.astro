@@ -14,7 +14,8 @@ import {
 	MAIN_PANEL_OVERLAPS_BANNER_HEIGHT,
 } from "../constants/constants";
 import Layout from "./Layout.astro";
-
+import { pathsEqual, url } from "@utils/url-utils";
+const ispage=pathsEqual(Astro.url.pathname, url("/posts/*"))
 interface Props {
 	title?: string;
 	banner?: string;
@@ -84,13 +85,16 @@ const mainPanelTop = siteConfig.banner.enable
 
             <main id="swup-container" class="transition-swup-fade col-span-2 lg:col-span-1 overflow-hidden">
                 <div id="content-wrapper" class="onload-animation">
+                    
                     <!-- the overflow-hidden here prevent long text break the layout-->
                     <!-- make id different from windows.swup global property -->
                     <slot></slot>
-                    <div class="footer col-span-2 onload-animation hidden lg:block">
+                    
+                    
                         <Footer></Footer>
                     </div>
                 </div>
+                
             </main>
 
             <div class="footer col-span-2 onload-animation block lg:hidden">
@@ -99,6 +103,7 @@ const mainPanelTop = siteConfig.banner.enable
         </div>
 
         <BackToTop></BackToTop>
+    
     </div>
 </div>
 
